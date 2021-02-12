@@ -1,3 +1,13 @@
+var getkey = () => {
+    let key = new Date().toLocaleTimeString(), x = 0
+    while (log[`${key}[${x}]`]) {x++}
+    return `${key}[${x}]`
+}
+
+var handler = message => {
+    Object.defineProperty(log, getkey(), {value: message})
+}
+
 let messages = [
     "backspasce",
     "enter",
@@ -17,13 +27,3 @@ var sendMessage = (message, callback) =>
 messages.forEach(
     message => sendMessage (message, handler)
 )
-
-var getkey = () => {
-    let key = new Date().toLocaleTimeString(), x = 0
-    while (log[`${key}[${x}]`]) {x++}
-    return `${key}[${x}]`
-}
-
-var handler = () => {
-    Object.defineProperty(log, getkey,{value: message})
-}
